@@ -1,0 +1,31 @@
+<odoo>
+
+        <record model="openacademy.course" id="course0">
+            <field name="name">📐 Cours n°1 - Logarithme népérien</field> <!-- Titre de notre cours -->
+            <field name="responsible_id">2</field> <!-- Correspond à notre user -->
+            <field name="description">Petit cours sur le logarithme népérien sur le lien suivant : https://www.maths-cours.fr/cours/logarithme-neperien/
+            </field>
+        </record>
+
+        <record model="openacademy.course" id="course1">
+            <field name="name">📐 Cours n°2 - Primitives</field>
+            <field name="responsible_id">3</field> <!-- Correspond au choix par défaut -->
+            <field name="description"> Cours de maths sur les primitives avec le fichier PDF suivant : http://www.christophebertault.fr/documents/coursetexercices/Cours%20-%20Calculs%20de%20primitives%20et%20d'integrales.pdf
+            </field>
+        </record>
+
+        <record model="openacademy.course" id="course2">
+            <field name="name">📐 Cours n°3 - Fonction exponetielle</field>
+            <field name="responsible_id">1</field> <!-- Correspond au bot -->
+            <field name="description">Cours de maths sur la fonction exponetielle disponible ici : https://www.methodemaths.fr/exponentielle/
+            </field>
+        </record>
+
+        <record model="openacademy.course" id="course3">
+            <field name="name">🏛️ Cours n°4 - Seconde Guerre Mondiale</field>
+            <field name="responsible_id">2</field> <!-- Correspond à notre user  -->
+            <field name="description">Cours d'histoire sur la Seconde Guerre Mondiale, cliquer ici : https://www.kartable.fr/ressources/histoire/cours/la-seconde-guerre-mondiale-4/52149
+            </field>
+        </record>
+
+</odoo>
