@@ -1,80 +1,48 @@
-<?xml version="1.0"?>
-<odoo>
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
 
-        <record model="ir.actions.act_window" id="act_session_graph">
-            <field name="name">Attendees by course</field>
-            <field name="res_model">openacademy.session</field>
-            <field name="view_mode">graph</field>
-            <field name="view_id"
-                   ref="openacademy.openacademy_session_graph_view"/>
-        </record>
-        <record model="ir.actions.act_window" id="act_session_calendar">
-            <field name="name">Sessions</field>
-            <field name="res_model">openacademy.session</field>
-            <field name="view_mode">calendar</field>
-            <field name="view_id" ref="openacademy.session_calendar_view"/>
-        </record>
-        <record model="ir.actions.act_window" id="act_course_list">
-            <field name="name">Courses</field>
-            <field name="res_model">openacademy.course</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <record model="ir.ui.view" id="board_session_form">
-            <field name="name">Session Dashboard Form</field>
-            <field name="model">board.board</field>
-            <field name="type">form</field>
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="partner_instructor_form_view">
+            <field name="name">partner.instructor</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <form string="Session Dashboard">
-                    <board style="2-1">
-                        <column>
-                            <action
-                                string="🙋 🙋‍ Participations par cours"
-                                name="%(act_session_graph)d"
-                                height="150"
-                                width="510"/>
-                            <action
-                                string="🖥️ Sessions"
-                                name="%(act_session_calendar)d"/>
-                        </column>
-                        <column>
-                            <action
-                                string="📚 Cours"
-                                name="%(act_course_list)d"/>
-                        </column>
-                    </board>
-                </form>
+                <notebook position="inside">
+                    <page string="Sessions">
+                        <group>
+                            <field name="instructor"/>
+                            <field name="session_ids"/>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="open_board_session">
-          <field name="name">Tableau de bord principal</field>
-          <field name="res_model">board.board</field>
-          <field name="view_mode">form</field>
-          <field name="usage">menu</field>
-          <field name="view_id" ref="board_session_form"/>
+
+        <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">📒 Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="configuration_menu" name="🔎 Recherche"
+                  parent="main_openacademy_menu"/> <!-- Apparait en menu n°2 -->
+        <menuitem id="contact_menu" name="📒 Contacts"
+                  parent="configuration_menu"
+                  action="contact_list_action"/> <!-- Apparait en sous menu -->
+
+    <record model="ir.actions.act_window" id="contact_cat_list_action">
+            <field name="name">🗂️ Répertoire</field>
+            <field name="res_model">res.partner.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="contact_cat_menu" name="🗂️ Répertoire"
+                  parent="configuration_menu"
+                  action="contact_cat_list_action"/> <!-- Apparait en sous menu -->
+
+        <record model="res.partner.category" id="teacher1">
+            <field name="name">👨‍🏫 Teacher / Level 1</field>
+        </record>
+        <record model="res.partner.category" id="teacher2">
+            <field name="name">👩‍🏫 Teacher / Level 2</field>
         </record>
 
-        <menuitem
-            name="📊 Tableau de bord principal" parent="base.menu_reporting_dashboard"
-            action="open_board_session"
-            sequence="1"
-            id="menu_board_session"/>
-
-        <record model="ir.actions.act_window" id="open_board_session">
-          <field name="name">Session Dashboard</field>
-          <field name="res_model">board.board</field>
-          <field name="view_mode">form</field>
-          <field name="usage">menu</field>
-          <field name="view_id" ref="board_session_form"/>
-        </record>
-
-
-        <menuitem id="openacademy_menu_s" name="💾 Tableau de bord"
-                  parent="main_openacademy_menu" /> <!-- Apparait en menu n°3 -->
-        <!-- the following menuitem should appear *after*
-             its parent openacademy_menu and *after* its
-             action course_list_action -->
-
-        <!-- <menuitem id="courses_menu_s" name="📊 Vue statistiques" parent="openacademy_menu_s"
-                  action="open_board_session"/> --> <!-- Apparait en menu n°2 -->
-
-</odoo>
+ </odoo>
